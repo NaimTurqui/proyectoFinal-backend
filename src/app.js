@@ -6,6 +6,7 @@ import { promises as fs } from 'fs';
 
 import productRouter from './routers/products.router.js';
 import cartRouter from './routers/carts.router.js';
+import viewsRouter from './routers/views.router.js'
 import {__dirname} from './utils.js';
 
 const app = express();
@@ -21,6 +22,7 @@ app.set('views',path.join(__dirname, 'views'))
 app.set('view engine', 'handlebars');
 
 app.use('/api', productRouter,cartRouter);
+app.use(viewsRouter)
 
 
 

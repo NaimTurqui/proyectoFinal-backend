@@ -1,6 +1,7 @@
 import express from 'express';
 import { promises as fs } from 'fs';
 import {__dirname} from '../utils.js';
+import {io} from '../socket.js'
 
 const productsFilePath = __dirname + '/products.json';
 
@@ -65,6 +66,8 @@ router.post('/products', async (req, res) => {
     products.push(newProduct);
     await saveProducts(products);
     res.json(newProduct);
+    io.emit('products', products)
+
 });
 
 router.put('/products/:pid', async (req, res) => {
