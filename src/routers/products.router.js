@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const fs = require('fs').promises;
-
+import express from 'express';
+import { promises as fs } from 'fs';
+import {__dirname} from '../utils.js';
 
 const productsFilePath = __dirname + '/products.json';
 
+const router = express.Router();
 
 async function loadProducts() {
     try {
@@ -26,8 +26,6 @@ function generateId(existingItems) {
     }
     return newId.toString();
 }
-
-
 
 
 router.get('/products', async (req, res) => {
@@ -105,4 +103,4 @@ router.delete('/products/:pid', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

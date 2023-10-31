@@ -1,12 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const fs = require('fs').promises;
-
+import express from 'express';
+import { promises as fs } from 'fs';
+import {__dirname} from '../utils.js';
 
 const cartsFilePath = __dirname + '/carts.json';
 const productsFilePath = __dirname + '/products.json';
 
-
+const router = express.Router();
 
 async function saveCarts(carts) {
     await fs.writeFile(cartsFilePath, JSON.stringify(carts, null, '\t'), 'utf8');
@@ -90,4 +89,4 @@ router.post('/carts/:cid/product/:pid', async (req, res) => {
         });
     }
 });
-module.exports = router;
+export default router;
