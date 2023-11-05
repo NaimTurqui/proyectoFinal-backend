@@ -16,7 +16,7 @@ async function loadProducts() {
     }
 }
 
-async function saveProducts(products) {
+async function saveProducts() {
     await fs.writeFile(productsFilePath, JSON.stringify(products, null, '\t'), 'utf8');
 }
 
@@ -28,7 +28,7 @@ export const init = (httpServer) => {
         
         socketClient.on('addProduct', (newProduct) => {
             products.push(newProduct);
-            saveProducts(newProduct)
+            saveProducts();
             io.emit('product-list', products);
         })
 
@@ -36,8 +36,8 @@ export const init = (httpServer) => {
             const index = products.findIndex(product => product.id === productId);
         
             if (index !== -1) {
-
                 products.splice(index, 1);
+                saveProducts();
                 io.emit('product-list', products); 
             }
         });

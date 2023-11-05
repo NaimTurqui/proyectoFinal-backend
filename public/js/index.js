@@ -7,8 +7,6 @@ const deleteProductForm = document.getElementById('deleteProductForm');
 
 socket.on('product-list', (products) => {
 
-    console.log('products-list', products)
-
     productList.innerText = '';
     products.forEach((product) => {
         const p = document.createElement('p');
@@ -25,7 +23,7 @@ addProductForm.addEventListener('submit', (e) => {
     const productIdAdd = document.getElementById('productIdAdd').value;
 
     socket.emit('addProduct', {
-        name: productName,
+        title: productName,
         price: productPrice,
         id: productIdAdd
     });
