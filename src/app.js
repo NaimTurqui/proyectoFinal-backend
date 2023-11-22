@@ -23,8 +23,6 @@ app.engine('handlebars', handlebars.engine());
 app.set('views',path.join(__dirname, 'views'))
 app.set('view engine', 'handlebars');
 
-app.use('/api', productRouter,cartRouter);
-app.use(viewsRouter)
 app.use('/', indexRouter);
 app.use('/api', productsApiRouter);
 
