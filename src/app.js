@@ -4,7 +4,7 @@ import handlebars from 'express-handlebars';
 import { promises as fs } from 'fs';
 
 
-import productRouter from './routers/products.router.js';
+import productsRouter from './routers/products.router.js';
 import cartRouter from './routers/carts.router.js';
 import viewsRouter from './routers/views.router.js'
 import indexRouter from './routers/views/index.router.js'
@@ -24,8 +24,8 @@ app.set('views',path.join(__dirname, 'views'))
 app.set('view engine', 'handlebars');
 
 app.use('/', indexRouter);
-app.use('/api', productsApiRouter);
-
+// app.use('/api', productsApiRouter);
+app.use('/api', productsRouter);
 
 
 
